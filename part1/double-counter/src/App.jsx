@@ -32,6 +32,7 @@ const App = () => {
   const increaseByOneRight = () => {
     let newRight = clicks.right + 1;
     // setRight(right + 1);
+    //setClicks({ left: clicks.left, right: clicks.right }); ==> yedi hamle newright variable nabanayeko vaye yesto huntho and settotal ma newright ko satta clicks.right hunthyo
     setClicks({ left: clicks.left, right: newRight });
     //tei state lai mutate nagarney , existing state bata naya state banayera naya value pathaune
     setHistory([...clickHistory, "R"]);
