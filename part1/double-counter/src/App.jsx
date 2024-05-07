@@ -1,19 +1,20 @@
 import { useState } from "react";
 import Display from "./Display";
 import MyButton from "./MyButton";
+import History from "./History";
 
 const App = () => {
   let initialState = {
-    left: 1,
-    right: 2,
+    left: 0,
+    right: 0,
   };
   // let [left, setLeft] = useState(1);
   // let [right, setRight] = useState(1);
   let [clicks, setClicks] = useState(initialState);
   //for setting the clicks history
-  let [clickHistory, setHistory] = useState(["L", "R", "R"]);
+  let [clickHistory, setHistory] = useState([]);
   //for the total number of history
-  let [totalClicks, setTotal] = useState(3);
+  let [totalClicks, setTotal] = useState(0);
 
   const increaseByOneLeft = () => {
     // setLeft(left + 1);
@@ -22,7 +23,9 @@ const App = () => {
       left: newLeft,
       right: clicks.right,
     };
+
     setClicks(newState);
+
     //push method use garda hudaina so concat use garne to add the history
     setHistory(clickHistory.concat("L"));
     //settotal function so so aba hamlai left rw right both ko ckick history chainxa so both lai + , same in the increasebyoneright
@@ -47,7 +50,9 @@ const App = () => {
       {/* {right} */}
       {clicks.right}
       <button onClick={increaseByOneRight}>right</button>
-      <div>click history:{clickHistory}</div>
+
+      {/* <div>click history:{clickHistory}</div> */}
+      <History history={clickHistory} />
       <div>total clicks:{totalClicks}</div>
     </div>
   );
