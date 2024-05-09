@@ -1,10 +1,11 @@
-const App = (props) => {
+import Note from "./components/Notes";
+const App = ({ notes }) => {
   return (
     <>
       <h1>Notes</h1>
       <ul>
-        {props.notes.map((value) => {
-          return <li>{value.content}</li>;
+        {notes.map((value) => {
+          return <Note key={value.id} note={value} />;
         })}
         {/* yesto garda index.js ma thape paxi hample app.jsx ma pani thapnu 
         parxa so to avoid this we use map method which returns a new array */}
