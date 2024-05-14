@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Note from "./components/Notes";
 const App = (props) => {
-  const [notes, setNotes] = useState(props.notes);
+  const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
+
+  useEffect(() => {
+    console.log("hello");
+  }, [newNote]);
 
   const notesToShow = notes.filter((note) => {
     if (showAll) {
@@ -16,7 +20,7 @@ const App = (props) => {
       }
     }
   });
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setNotes(
       notes.concat({
