@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Note from "./components/Notes";
 import axios from "axios";
+import noteServices from "./services/notes";
+
 const App = (props) => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
@@ -9,7 +11,7 @@ const App = (props) => {
   useEffect(() => {
     console.log("hello");
     //1. get data from backend server
-    let myAxiosPromise = axios.get("http://localhost:3001/notes");
+    let myAxiosPromise = noteServices.getAll();
     myAxiosPromise.then((myResult) => {
       console.log("returned promise");
       console.dir(myResult.data);
@@ -37,7 +39,7 @@ const App = (props) => {
       id: notes.length + 1,
       important: Math.random() < 0.5,
     };
-    let postPromise = axios.post("http://localhost:3001/notes", myNote);
+    let postPromise = noteServices.create(myNote);
     postPromise.then((result) => {
       console.log("note created data returned", result.data);
       setNotes(notes.concat(result.data));
@@ -59,10 +61,7 @@ const App = (props) => {
       return note.id === id;
     });
     let updatedNote = { ...currentNotes, important: !currentNotes.important };
-    let putPromise = axios.put(
-      `http://localhost:3001/notes/${id}`,
-      updatedNote
-    );
+    let putPromise = noteServices.update(id, updatedNote);
     putPromise.then((result) => {
       console.dir(result);
       //2. update the reacts state
