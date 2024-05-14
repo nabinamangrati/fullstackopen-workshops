@@ -32,14 +32,18 @@ const App = (props) => {
   });
   const handleSubmit = (event) => {
     event.preventDefault();
-    setNotes(
-      notes.concat({
-        content: newNote,
-        id: notes.length + 1,
-        important: Math.random() < 0.5,
-      })
-    );
-    setNewNote("");
+    let myNote = {
+      content: newNote,
+      id: notes.length + 1,
+      important: Math.random() < 0.5,
+    };
+    let postPromise = axios.post("http://localhost:3001/notes", myNote);
+    postPromise.then((result) => {
+      console.log("note created data returned", result.data);
+      setNotes(notes.concat(result.data));
+      setNewNote("");
+    });
+
     console.log("form has been submitted");
   };
   const handleChange = (event) => {
@@ -48,6 +52,25 @@ const App = (props) => {
   };
   const handleShowAll = () => {
     setShowAll(!showAll);
+  };
+  const updateData = (id) => {
+    //1. update the server
+    let currentNotes = notes.find((note) => {
+      return note.id === id;
+    });
+    let updatedNote = { ...currentNotes, important: !currentNotes.important };
+    let putPromise = axios.put(
+      `http://localhost:3001/notes/${id}`,
+      updatedNote
+    );
+    putPromise.then((result) => {
+      console.dir(result);
+      //2. update the reacts state
+      let updatedNote = result.data;
+      setNotes(
+        notes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+      );
+    });
   };
   return (
     <>
@@ -60,7 +83,15 @@ const App = (props) => {
           {
             /* {notes.map((value) => { */
           }
-          return <Note key={value.id} note={value} />;
+          return (
+            <Note
+              key={value.id}
+              note={value}
+              updatedNote={() => {
+                updateData(value.id);
+              }}
+            />
+          );
         })}
         {/* yesto garda index.js ma thape paxi hample app.jsx ma pani thapnu 
         parxa so to avoid this we use map method which returns a new array */}
