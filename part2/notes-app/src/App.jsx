@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Note from "./components/Notes";
+import axios from "axios";
 const App = (props) => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
@@ -7,7 +8,16 @@ const App = (props) => {
 
   useEffect(() => {
     console.log("hello");
-  }, [newNote]);
+    //1. get data from backend server
+    let myAxiosPromise = axios.get("http://localhost:3001/notes");
+    myAxiosPromise.then((myResult) => {
+      console.log("returned promise");
+      console.dir(myResult.data);
+      //2. put the date into the notes state
+      setNotes(myResult.data);
+    });
+    console.log(myAxiosPromise);
+  }, []);
 
   const notesToShow = notes.filter((note) => {
     if (showAll) {
