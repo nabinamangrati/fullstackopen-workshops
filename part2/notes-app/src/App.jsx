@@ -3,7 +3,7 @@ import Note from "./components/Notes";
 import axios from "axios";
 import noteServices from "./services/notes";
 
-const App = (props) => {
+const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
@@ -15,9 +15,15 @@ const App = (props) => {
     myAxiosPromise.then((myResult) => {
       console.log("returned promise");
       console.dir(myResult.data);
+      myResult.push({
+        id: 1000,
+        content: "this is fake note",
+        important: true,
+      });
       //2. put the date into the notes state
-      setNotes(myResult.data);
+      setNotes(myResult);
     });
+
     console.log(myAxiosPromise);
   }, []);
 
@@ -62,14 +68,26 @@ const App = (props) => {
     });
     let updatedNote = { ...currentNotes, important: !currentNotes.important };
     let putPromise = noteServices.update(id, updatedNote);
-    putPromise.then((result) => {
-      console.dir(result);
-      //2. update the reacts state
-      let updatedNote = result.data;
-      setNotes(
-        notes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
-      );
-    });
+    putPromise
+      .then((result) => {
+        console.dir(result);
+        //2. update the reacts state
+        let updatedNote = result.data;
+        setNotes(
+          notes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+        );
+      })
+      .catch((err) => {
+        console.log("error happened");
+        console.dir(err);
+        if (err.response.status === 404) {
+          console.log("this means the id doesnt exist in the server");
+          alert(`sorry this note ${currentNotes.content} doesnot exist`);
+          setNotes(notes.filter((note) => note.id !== currentNotes.id));
+        } else {
+          console.log("this is some other error");
+        }
+      });
   };
   return (
     <>
