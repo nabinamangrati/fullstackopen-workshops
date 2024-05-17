@@ -21,8 +21,13 @@
       "important": false
     },
     {
-      "id": 5,
+      "id": "5",
       "content": "hiii",
+      "important": true
+    },
+    {
+      "id": 7,
+      "content": "wow",
       "important": true
     }
   ]
