@@ -66,23 +66,19 @@ app.get("/api/notes/:id", (request, response, next) => {
     });
 });
 
-app.put("/api/notes/:id", (request, response) => {
-  const myId = Number(request.params.id);
-  const updatedNote = request.body;
-  let noteFound = false;
-  notes = notes.map((note) => {
-    if (note.id !== myId) return note;
-    else {
-      noteFound = true;
-      return updatedNote;
-    }
-  });
+app.put("/api/notes/:id", (request, response, next) => {
+  const body = request.body;
 
-  if (noteFound) {
-    response.status(202).json(updatedNote);
-  } else {
-    response.status(404).send(`There are no notes at ${myId}`);
-  }
+  const note = {
+    content: body.content,
+    important: body.important,
+  };
+
+  Note.findByIdAndUpdate(request.params.id, note, { new: true })
+    .then((updatedNote) => {
+      response.json(updatedNote);
+    })
+    .catch((error) => next(error));
 });
 
 app.delete("/api/notes/:id", (request, response) => {
