@@ -88,13 +88,21 @@ app.delete("/api/notes/:id", (request, response, next) => {
     })
     .catch((error) => next(error));
 });
-app.post("/api/notes/", (request, response) => {
-  const myNewPost = request.body;
+app.post("/api/notes", (request, response) => {
+  const body = request.body;
 
-  myNewPost.id = notes.length + 1;
-  notes.push(myNewPost);
-  console.log(myNewPost);
-  response.status(201).json(myNewPost);
+  if (body.content === undefined) {
+    return response.status(400).json({ error: "content missing" });
+  }
+
+  const note = new Note({
+    content: body.content,
+    important: body.important || false,
+  });
+
+  note.save().then((savedNote) => {
+    response.json(savedNote);
+  });
 });
 
 app.use((request, response, next) => {
