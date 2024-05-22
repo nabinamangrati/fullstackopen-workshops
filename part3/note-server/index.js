@@ -45,7 +45,7 @@ app.get("/api/notes", (request, response) => {
   });
 });
 
-app.get("/api/notes/:id", (request, response) => {
+app.get("/api/notes/:id", (request, response, next) => {
   Note.findById(request.params.id)
     .then((result) => {
       // const myId = Number(request.params.id);
@@ -57,10 +57,12 @@ app.get("/api/notes/:id", (request, response) => {
       }
     })
     .catch((e) => {
-      console.log(e);
-      response
-        .status(500)
-        .send(`${request.params.id} is not in the required format`);
+      next(e);
+      //if added "next" we can just catch next(e)
+      // console.log(e);
+      // response
+      //   .status(500)
+      //   .send(`${request.params.id} is not in the required format`);
     });
 });
 
@@ -100,6 +102,19 @@ app.post("/api/notes/", (request, response) => {
 app.use((request, response, next) => {
   response.status(404).send("no code available to handle this request");
 });
+
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message);
+
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
+  }
+
+  next(error);
+};
+
+// this has to be the last loaded middleware, also all the routes should be registered before this!
+app.use(errorHandler);
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
