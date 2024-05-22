@@ -15,8 +15,9 @@ const App = () => {
     //1. get data from backend server
     let myAxiosPromise = noteServices.getAll();
     myAxiosPromise.then((myResult) => {
-      console.log("returned promise");
+      //console.log("returned promise");
       console.dir(myResult.data);
+      console.log(myResult, "from useEffect");
       myResult.push({
         id: 1000,
         content: "this is fake note",
@@ -40,11 +41,12 @@ const App = () => {
       }
     }
   });
+  console.log(notesToShow, "notestoshow");
   const handleSubmit = (event) => {
     event.preventDefault();
     let myNote = {
       content: newNote,
-      id: notes.length + 1,
+      id: `${notes.length + 1}`,
       important: Math.random() < 0.5,
     };
     let postPromise = noteServices.create(myNote);
