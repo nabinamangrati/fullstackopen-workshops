@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
-const url = `mongodb+srv://nabina1:mypassword@cluster0.fjzyldz.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`;
+const url = process.env.MONGODB_URI;
 
 mongoose.set("strictQuery", false);
 
@@ -132,7 +133,7 @@ const errorHandler = (error, request, response, next) => {
 
 // this has to be the last loaded middleware, also all the routes should be registered before this!
 app.use(errorHandler);
-const PORT = 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
