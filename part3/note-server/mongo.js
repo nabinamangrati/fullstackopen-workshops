@@ -5,8 +5,6 @@ if (process.argv.length < 3) {
   process.exit(1);
 }
 
-const password = process.argv[2];
-
 const url = process.env.MONGODB_URI;
 
 mongoose.set("strictQuery", false);
@@ -29,10 +27,10 @@ const note2 = new Note({
   important: false,
 });
 
-note1.save().then((result) => {
+note1.save().then(() => {
   console.log("note saved!");
 });
-note2.save().then((result) => {
+note2.save().then(() => {
   console.log("note saved!");
   mongoose.connection.close();
 });

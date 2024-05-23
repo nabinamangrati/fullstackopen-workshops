@@ -41,7 +41,7 @@ const requestLogger = (request, response, next) => {
   next();
 };
 app.use(requestLogger);
-let notes = [];
+
 app.get("/", (request, response) => {
   response.send("<h1>Hello World!</h1>");
 });
@@ -92,7 +92,7 @@ app.put("/api/notes/:id", (request, response, next) => {
 
 app.delete("/api/notes/:id", (request, response, next) => {
   Note.findByIdAndDelete(request.params.id)
-    .then((result) => {
+    .then(() => {
       response.status(204).end();
     })
     .catch((error) => next(error));
@@ -115,7 +115,7 @@ app.post("/api/notes", (request, response, next) => {
     });
 });
 
-app.use((request, response, next) => {
+app.use((request, response) => {
   response.status(404).send("no code available to handle this request");
 });
 
