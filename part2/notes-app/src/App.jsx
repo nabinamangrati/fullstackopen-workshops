@@ -50,11 +50,15 @@ const App = () => {
       important: Math.random() < 0.5,
     };
     let postPromise = noteServices.create(myNote);
-    postPromise.then((result) => {
-      console.log("note created data returned", result.data);
-      setNotes(notes.concat(result.data));
-      setNewNote("");
-    });
+    postPromise
+      .then((result) => {
+        console.log("note created data returned", result.data);
+        setNotes(notes.concat(result.data));
+        setNewNote("");
+      })
+      .catch((error) => {
+        alert(error.response.data.error); // Show the specific error message from the server
+      });
 
     console.log("form has been submitted");
   };
