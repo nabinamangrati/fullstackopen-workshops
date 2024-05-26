@@ -2,10 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config();
-
-const url = process.env.MONGODB_URI;
-
+const { url } = require("./utils/config");
 mongoose.set("strictQuery", false);
 
 mongoose.connect(url);
