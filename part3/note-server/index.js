@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { url, PORT } = require("./utils/config");
-const { errorHandler } = require("./utils/middleware");
+const { errorHandler, noHandler } = require("./utils/middleware");
 
 mongoose.set("strictQuery", false);
 
@@ -114,9 +114,7 @@ app.post("/api/notes", (request, response, next) => {
     });
 });
 
-app.use((request, response) => {
-  response.status(404).send("no code available to handle this request");
-});
+app.use(noHandler);
 
 // this has to be the last loaded middleware, also all the routes should be registered before this!
 app.use(errorHandler);

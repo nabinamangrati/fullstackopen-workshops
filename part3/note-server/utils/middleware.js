@@ -1,3 +1,7 @@
+const noHandler = (request, response) => {
+  response.status(404).send("no code available to handle this request");
+};
+
 const errorHandler = (error, request, response, next) => {
   console.error(error.message);
 
@@ -9,4 +13,4 @@ const errorHandler = (error, request, response, next) => {
 
   next(error);
 };
-module.exports = { errorHandler };
+module.exports = { errorHandler, noHandler };
