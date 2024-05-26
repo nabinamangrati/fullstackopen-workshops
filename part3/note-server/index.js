@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
-const { url } = require("./utils/config");
+const { url, PORT } = require("./utils/config");
 mongoose.set("strictQuery", false);
 
 mongoose.connect(url);
@@ -130,7 +130,6 @@ const errorHandler = (error, request, response, next) => {
 
 // this has to be the last loaded middleware, also all the routes should be registered before this!
 app.use(errorHandler);
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+
+app.listen(PORT);
+console.log(`Server running on port ${PORT}`);
