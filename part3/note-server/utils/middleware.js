@@ -13,4 +13,12 @@ const errorHandler = (error, request, response, next) => {
 
   next(error);
 };
-module.exports = { errorHandler, noHandler };
+
+const requestLogger = (request, response, next) => {
+  console.log("Method:", request.method);
+  console.log("Path:  ", request.path);
+  console.log("Body:  ", request.body);
+  console.log("we just wrote this code ");
+  next();
+};
+module.exports = { errorHandler, noHandler, requestLogger };
