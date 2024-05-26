@@ -8,6 +8,7 @@ const {
   noHandler,
   requestLogger,
 } = require("./utils/middleware");
+const { info } = require("./utils/logger");
 
 mongoose.set("strictQuery", false);
 
@@ -118,4 +119,4 @@ app.use(noHandler);
 app.use(errorHandler);
 
 app.listen(PORT);
-console.log(`Server running on port ${PORT}`);
+info(`Server running on port ${PORT}`, "logging from index");
