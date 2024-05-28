@@ -14,6 +14,8 @@ mongoose.set("strictQuery", false);
 
 mongoose.connect(url);
 
+console.log("NODE_ENV is", process.env.NODE_ENV);
+
 app.use(express.json());
 app.use(cors());
 app.use(express.static("dist"));

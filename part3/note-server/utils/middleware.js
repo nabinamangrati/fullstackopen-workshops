@@ -1,3 +1,4 @@
+const { info } = require("./logger");
 const noHandler = (request, response) => {
   response.status(404).send("no code available to handle this request");
 };
@@ -15,10 +16,10 @@ const errorHandler = (error, request, response, next) => {
 };
 
 const requestLogger = (request, response, next) => {
-  console.log("Method:", request.method);
-  console.log("Path:  ", request.path);
-  console.log("Body:  ", request.body);
-  console.log("we just wrote this code ");
+  info("Method:", request.method);
+  info("Path:  ", request.path);
+  info("Body:  ", request.body);
+  info("we just wrote this code ");
   next();
 };
 module.exports = { errorHandler, noHandler, requestLogger };
