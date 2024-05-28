@@ -1,10 +1,9 @@
 const app = require("express").Router();
 const Note = require("../models/note");
 
-app.get("/", (request, response) => {
-  Note.find({}).then((notes) => {
-    response.json(notes);
-  });
+app.get("/", async (request, response) => {
+  let result = await Note.find({});
+  response.json(result);
 });
 
 app.get("/:id", (request, response, next) => {
@@ -53,22 +52,19 @@ app.delete(":id", (request, response, next) => {
     })
     .catch((error) => next(error));
 });
-app.post("/", (request, response, next) => {
+app.post("/", async (request, response, next) => {
   const body = request.body;
 
   const note = new Note({
     content: body.content,
     important: body.important || false,
   });
-
-  note
-    .save()
-    .then((savedNote) => {
-      response.json(savedNote);
-    })
-    .catch((e) => {
-      next(e);
-    });
+  try {
+    let savedNote = await note.save();
+    response.status(201).json(savedNote);
+  } catch (e) {
+    next(e);
+  }
 });
 
 module.exports = app;
