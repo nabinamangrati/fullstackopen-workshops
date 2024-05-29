@@ -1,19 +1,17 @@
 const mongoose = require("mongoose");
-const noteSchema = new mongoose.Schema({
-  content: {
-    type: String,
-    minLength: 5,
-    required: true,
-    user: {
+const userSchema = new mongoose.Schema({
+  userName: String,
+  user: String,
+  passwordHash: String,
+  note: [
+    {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Note",
     },
-  },
-
-  important: Boolean,
+  ],
 });
 
-noteSchema.set("toJSON", {
+userSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -21,4 +19,4 @@ noteSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("Note", noteSchema);
+module.exports = mongoose.model("User", userSchema);
