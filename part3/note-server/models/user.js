@@ -15,12 +15,14 @@ const userSchema = new mongoose.Schema({
     },
   ],
 });
-
+console.log("this is schema");
+// console.log(userSchema, "username form schema");
 userSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
     delete returnedObject.__v;
+    delete returnedObject.passwordHash;
   },
 });
 userSchema.plugin(uniqueValidator);
