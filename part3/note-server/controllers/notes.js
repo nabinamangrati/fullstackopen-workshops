@@ -82,7 +82,8 @@ app.post("/", async (request, response, next) => {
 
     let savedNote = await note.save();
     response.status(201).json(savedNote);
-    user.notes = user.notes.concat(savedNote.id);
+    user.note.push(savedNote.id);
+    await user.save();
   } catch (e) {
     next(e);
   }

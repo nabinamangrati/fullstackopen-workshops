@@ -5,12 +5,12 @@ GET http://localhost:3001/api/users/
 ###
 POST http://localhost:3001/api/notes/
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmkxNDEzIiwiaWQiOiI2NjVkYTEwMDA5MDhhODYyNzcxYjA4YjciLCJpYXQiOjE3MTc0MTIxMDQsImV4cCI6MTcxNzQxMjEzNH0.v4wC4s0OuVp7ayTr4bYC3LkP4go4gc7c5tkGHtljjvU
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmkxNDEzIiwiaWQiOiI2NjVkYTEwMDA5MDhhODYyNzcxYjA4YjciLCJpYXQiOjE3MTgwOTY3OTEsImV4cCI6MTcxODA5NjgyMX0.kZntah9DFvxajnAXVkPwqC5Ufwgvw6QwaM1N01BPSIc
 
 {
     "content": "my another new note",
     "important": false,
-    "userId":"665d7ec60191857f934d8c6b"
+    "userId":"665da1000908a862771b08b7"
 }
 ###
 PUT  http://localhost:3001/api/notes/664ed0244e1c573df5fe8708

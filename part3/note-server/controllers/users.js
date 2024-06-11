@@ -1,7 +1,6 @@
 const app = require("express").Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 app.get("/", async (request, response) => {
   let result = await User.find({}).populate("note", {
