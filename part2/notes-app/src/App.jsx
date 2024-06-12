@@ -3,12 +3,15 @@ import Note from "./components/Notes";
 import axios from "axios";
 import noteServices from "./services/notes";
 import Notification from "./components/Notification";
+import loginService from "./services/login";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
   const [notification, setNotification] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     console.log("hello");
@@ -105,12 +108,46 @@ const App = () => {
   };
 
   const myStyle = { fontSize: "60px" };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log("logging in with", username, password);
+    let loggedinUser = await loginService.login({
+      username: username,
+      password: password,
+    });
+    console.log("logged in user ", loggedinUser);
+  };
+
   return (
     <>
       <h1 style={myStyle} className="redbackground">
         Notes
       </h1>
+      <h1>login form</h1>
+
       <Notification message={notification} />
+      <form onSubmit={handleLogin}>
+        <div>
+          username
+          <input
+            type="text"
+            value={username}
+            name="Username"
+            onChange={({ target }) => setUsername(target.value)}
+          />
+        </div>
+        <div>
+          password
+          <input
+            type="password"
+            value={password}
+            name="Password"
+            onChange={({ target }) => setPassword(target.value)}
+          />
+        </div>
+        <button type="submit">login</button>
+      </form>
       <button onClick={handleShowAll}>
         show {showAll ? "important" : "all"}
       </button>
