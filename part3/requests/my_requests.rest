@@ -5,12 +5,12 @@ GET http://localhost:3001/api/users/
 ###
 POST http://localhost:3001/api/notes/
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmkxNDEzIiwiaWQiOiI2NjVkYTEwMDA5MDhhODYyNzcxYjA4YjciLCJpYXQiOjE3MTgwOTY3OTEsImV4cCI6MTcxODA5NjgyMX0.kZntah9DFvxajnAXVkPwqC5Ufwgvw6QwaM1N01BPSIc
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYmkxNCIsImlkIjoiNjY2OTMyYjM0OGJlNzMxZGNlZTA0MzBmIiwiaWF0IjoxNzE4MTcwMzU0LCJleHAiOjE3MTgxNzAzODR9.KPZLJvK672lf1VWL16JnMRWp782poOoUfwhpQVeFtr8
 
 {
-    "content": "my another new note",
+    "content": "hi nabina",
     "important": false,
-    "userId":"665da1000908a862771b08b7"
+    "userId":"666932b348be731dcee0430f"
 }
 ###
 PUT  http://localhost:3001/api/notes/664ed0244e1c573df5fe8708
@@ -26,7 +26,7 @@ content-type: application/json
 
 {
     "name":"Nabina Mangrati",
-    "username": "nabi1413",
+    "username": "nabi14",
     "password":"nabina123"
 }
 ###
@@ -35,6 +35,6 @@ content-type: application/json
 
 {
     
-    "username": "nabi1413",
+    "username": "nabi14",
     "password":"nabina123"
 }
