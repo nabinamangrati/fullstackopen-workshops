@@ -12,6 +12,7 @@ const App = () => {
   const [notification, setNotification] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     console.log("hello");
@@ -52,7 +53,7 @@ const App = () => {
       id: `${notes.length + 1}`,
       important: Math.random() < 0.5,
     };
-    let postPromise = noteServices.create(myNote);
+    let postPromise = noteServices.create(myNote, user.token);
     postPromise
       .then((result) => {
         console.log("note created data returned", result.data);
@@ -107,8 +108,6 @@ const App = () => {
       });
   };
 
-  const myStyle = { fontSize: "60px" };
-
   const handleLogin = async (event) => {
     event.preventDefault();
     console.log("logging in with", username, password);
@@ -117,16 +116,12 @@ const App = () => {
       password: password,
     });
     console.log("logged in user ", loggedinUser);
+    setUser(loggedinUser);
   };
+  const myStyle = { fontSize: "60px" };
 
-  return (
-    <>
-      <h1 style={myStyle} className="redbackground">
-        Notes
-      </h1>
-      <h1>login form</h1>
-
-      <Notification message={notification} />
+  const loginForm = () => {
+    return (
       <form onSubmit={handleLogin}>
         <div>
           username
@@ -148,14 +143,32 @@ const App = () => {
         </div>
         <button type="submit">login</button>
       </form>
+    );
+  };
+
+  const noteForm = () => {
+    return (
+      <form onSubmit={handleSubmit}>
+        <input value={newNote} onChange={handleChange} />
+        <button>submit</button>
+      </form>
+    );
+  };
+
+  return (
+    <>
+      <h1 style={myStyle} className="redbackground">
+        Notes
+      </h1>
+
+      <Notification message={notification} />
+      {user === null ? loginForm() : noteForm()}
+
       <button onClick={handleShowAll}>
         show {showAll ? "important" : "all"}
       </button>
       <ul>
         {notesToShow.map((value) => {
-          {
-            /* {notes.map((value) => { */
-          }
           return (
             <Note
               key={value.id}
@@ -166,16 +179,7 @@ const App = () => {
             />
           );
         })}
-        {/* yesto garda index.js ma thape paxi hample app.jsx ma pani thapnu 
-        parxa so to avoid this we use map method which returns a new array */}
-        {/* <li>{props.notes[0].content}</li>
-        <li>{props.notes[1].content}</li>
-        <li>{props.notes[2].content}</li> */}
       </ul>
-      <form onSubmit={handleSubmit}>
-        <input value={newNote} onChange={handleChange} />
-        <button>submit</button>
-      </form>
     </>
   );
 };
