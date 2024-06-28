@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Note from "./components/Notes";
 import axios from "axios";
 import noteServices from "./services/notes";
@@ -16,6 +16,8 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+
+  const noteFormRef = useRef();
 
   useEffect(() => {
     console.log("hello");
@@ -63,6 +65,7 @@ const App = () => {
       id: `${notes.length + 1}`,
       important: Math.random() < 0.5,
     };
+    noteFormRef.current.toggleVisibility();
     let postPromise = noteServices.create(myNote, user.token);
     postPromise
       .then((result) => {
@@ -158,7 +161,7 @@ const App = () => {
 
   const noteForm = () => {
     return (
-      <Togglable buttonLabel="new note">
+      <Togglable buttonLabel="new note" ref={noteFormRef}>
         <NoteForm
           onSubmit={handleSubmit}
           value={newNote}
