@@ -6,6 +6,7 @@ import Notification from "./components/Notification";
 import loginService from "./services/login";
 import Togglable from "./components/Togglable";
 import LoginForm from "./components/LoginForm";
+import NoteForm from "./components/NoteForm";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
@@ -143,7 +144,7 @@ const App = () => {
 
   const loginForm = () => {
     return (
-      <Togglable buttonLabel="login">
+      <Togglable buttonLabel="show login">
         <LoginForm
           username={username}
           password={password}
@@ -157,10 +158,13 @@ const App = () => {
 
   const noteForm = () => {
     return (
-      <form onSubmit={handleSubmit}>
-        <input value={newNote} onChange={handleChange} />
-        <button>submit</button>
-      </form>
+      <Togglable buttonLabel="new note">
+        <NoteForm
+          onSubmit={handleSubmit}
+          value={newNote}
+          handleChange={handleChange}
+        />
+      </Togglable>
     );
   };
 
