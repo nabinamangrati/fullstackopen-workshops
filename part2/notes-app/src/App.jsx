@@ -65,7 +65,9 @@ const App = () => {
       id: `${notes.length + 1}`,
       important: Math.random() < 0.5,
     };
+
     noteFormRef.current.toggleVisibility();
+
     let postPromise = noteServices.create(myNote, user.token);
     postPromise
       .then((result) => {
