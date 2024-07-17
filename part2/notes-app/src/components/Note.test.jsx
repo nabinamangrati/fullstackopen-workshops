@@ -20,3 +20,19 @@ test("renders content", () => {
   // );
   // expect(element).toBeDefined();
 });
+test("clicking the button calls event handler once", async () => {
+  const note = {
+    content: "Component testing is done with react-testing-library",
+    important: true,
+  };
+
+  const mockHandler = vi.fn();
+
+  render(<Note note={note} updatedNote={mockHandler} />);
+
+  const user = userEvent.setup();
+  const button = screen.getByText("change true");
+  await user.click(button);
+
+  expect(mockHandler.mock.calls).toHaveLength(1);
+});
