@@ -6,9 +6,11 @@ test("<NoteForm /> updates parent state and calls onSubmit", async () => {
   const createNote = vi.fn();
   const user = userEvent.setup();
 
-  render(<NoteForm onSubmit={createNote} />);
+  let { container } = render(<NoteForm onSubmit={createNote} />);
 
-  const input = screen.getByRole("textbox");
+  //   const input = screen.getByRole("textbox");
+  const input = container.querySelector("#note-input");
+  //   const input = screen.getByPlaceholderText("enter text here");
   const sendButton = screen.getByText("save");
 
   await user.type(input, "testing a form...");

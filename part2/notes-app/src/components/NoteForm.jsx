@@ -12,13 +12,16 @@ const NoteForm = ({ onSubmit }) => {
     });
     setNewNote("");
   };
-  const handleChange = (e) => {
-    setNewNote(e.target.value);
-  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={newNote} onChange={handleChange} />
+      <input
+        placeholder="enter text here"
+        type="text"
+        value={newNote}
+        onChange={(e) => setNewNote(e.target.value)}
+        id="note-input"
+      />
       <button type="submit">save</button>
     </form>
   );
