@@ -1,13 +1,27 @@
-const NoteForm = ({ onSubmit, handleChange, value }) => {
-  return (
-    <div>
-      <h2>Create a new note</h2>
+// NoteForm.jsx
+import React, { useState } from "react";
 
-      <form onSubmit={onSubmit}>
-        <input value={value} onChange={handleChange} />
-        <button type="submit">save</button>
-      </form>
-    </div>
+const NoteForm = ({ onSubmit }) => {
+  const [newNote, setNewNote] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({
+      content: newNote,
+      important: true,
+    });
+    setNewNote("");
+  };
+  const handleChange = (e) => {
+    setNewNote(e.target.value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" value={newNote} onChange={handleChange} />
+      <button type="submit">save</button>
+    </form>
   );
 };
+
 export default NoteForm;
