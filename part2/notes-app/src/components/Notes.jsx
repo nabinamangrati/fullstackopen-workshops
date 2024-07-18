@@ -4,6 +4,7 @@ const Note = ({ note, updatedNote }) => {
       {note.content}{" "}
       <button onClick={updatedNote}>
         change {note.important ? "true" : "false"}
+        {/* please change {note.important ? "true" : "false"} */}
       </button>
     </li>
   );
