@@ -26,6 +26,10 @@ app.use(requestLogger);
 app.use("/api/notes", notesController);
 app.use("/api/users", usersController);
 app.use("/api/login", loginController);
+if (process.env.NODE_ENV === "test") {
+  const testingRouter = require("./controllers/testing");
+  app.use("/api/testing", testingRouter);
+}
 
 app.use(noHandler);
 
