@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { createStore } from "redux";
+import noteReducer from "./reducers/noteReducer";
 // import App from "./App";
 
 const noteReducer = (state = [], action) => {
