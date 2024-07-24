@@ -3,16 +3,6 @@ import { createStore } from "redux";
 import noteReducer from "./reducers/noteReducer";
 // import App from "./App";
 
-const noteReducer = (state = [], action) => {
-  console.log(action, "action");
-  console.log(state, "state");
-  if (action.type === "NEW_NOTE") {
-    const newState = state.concat(action.payload);
-    return newState;
-  }
-
-  return state;
-};
 const store = createStore(noteReducer);
 store.dispatch({
   type: "NEW_NOTE",
