@@ -12,21 +12,41 @@ store.dispatch({
     id: 1,
   },
 });
-store.dispatch({
-  type: "NEW_NOTE",
-  payload: {
-    content: "state changes are made with actions",
-    important: false,
-    id: 2,
-  },
-});
 
 const App = () => {
+  const addNote = (event) => {
+    event.preventDefault();
+    console.dir(event.target.myInput.value);
+    store.dispatch({
+      type: "NEW_NOTE",
+      payload: {
+        content: event.target.myInput.value,
+        important: true,
+        id: store.getState().length + 1,
+      },
+    });
+  };
+
+  const toggleImportant = (id) => {
+    store.dispatch({
+      type: "TOGGLE_IMPORTANCE",
+      payload: id,
+    });
+  };
   return (
     <div>
+      <form onSubmit={addNote}>
+        <input name="myInput" />
+        <button>Add Note</button>
+      </form>
       <ul>
         {store.getState().map((note) => (
-          <li key={note.id}>
+          <li
+            key={note.id}
+            onClick={() => {
+              toggleImportant(note.id);
+            }}
+          >
             {note.content} <strong>{note.important ? "important" : ""}</strong>
           </li>
         ))}
@@ -37,6 +57,6 @@ const App = () => {
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(<App />);
-// store.subscribe(() => {
-//   root.render(<App />);
-// });
+store.subscribe(() => {
+  root.render(<App />);
+});
