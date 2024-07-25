@@ -1,6 +1,9 @@
 import { createRoot } from "react-dom/client";
 import { createStore } from "redux";
-import noteReducer from "./reducers/noteReducer";
+import noteReducer, {
+  createNote,
+  toggleImportanceOf,
+} from "./reducers/noteReducer";
 // import App from "./App";
 
 const store = createStore(noteReducer);
@@ -17,22 +20,18 @@ const App = () => {
   const addNote = (event) => {
     event.preventDefault();
     console.dir(event.target.myInput.value);
-    store.dispatch({
-      type: "NEW_NOTE",
-      payload: {
-        content: event.target.myInput.value,
-        important: true,
-        id: store.getState().length + 1,
-      },
-    });
+    const newNote = {
+      content: event.target.myInput.value,
+      important: true,
+      id: store.getState().length + 1,
+    };
+    store.dispatch(createNote(newNote));
   };
 
   const toggleImportant = (id) => {
-    store.dispatch({
-      type: "TOGGLE_IMPORTANCE",
-      payload: id,
-    });
+    store.dispatch(toggleImportanceOf(id));
   };
+
   return (
     <div>
       <form onSubmit={addNote}>

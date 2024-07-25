@@ -18,4 +18,20 @@ const noteReducer = (state = [], action) => {
       return state;
   }
 };
+const createNote = (newNote) => {
+  return {
+    type: "NEW_NOTE",
+    payload: newNote,
+  };
+};
+
+const toggleImportanceOf = (id) => {
+  return {
+    type: "TOGGLE_IMPORTANCE",
+    payload: id,
+  };
+};
+
+export { createNote, toggleImportanceOf };
+
 export default noteReducer;
