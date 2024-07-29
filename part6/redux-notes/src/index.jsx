@@ -1,9 +1,15 @@
 import { createRoot } from "react-dom/client";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import noteReducer from "./reducers/noteReducer";
 import App from "./App";
 import { Provider } from "react-redux";
-const store = createStore(noteReducer);
+import filterReducer from "./reducers/filterReducer";
+
+const reducer = combineReducers({
+  notes: noteReducer,
+  filter: filterReducer,
+});
+const store = createStore(reducer);
 
 const container = document.getElementById("root");
 const root = createRoot(container);

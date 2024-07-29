@@ -1,11 +1,19 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { filterChange } from "./reducers/filterReducer";
 import NoteForm from "./components/NoteForm";
 import Notes from "./components/Notes";
+
 const App = () => {
-  const [filter, setFilter] = useState("ALL");
+  // const [filter, setFilter] = useState("ALL");
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => {
+    return state.filter;
+  });
   const filterSelected = (filter) => {
     console.log("clicked radio button", filter);
-    setFilter(filter);
+    // setFilter(filter);
+    dispatch(filterChange(filter));
   };
   return (
     <div>
@@ -15,6 +23,7 @@ const App = () => {
           type="radio"
           name="filter"
           onChange={() => filterSelected("ALL")}
+          checked={filter === "ALL"}
         />
         important
         <input
@@ -31,7 +40,7 @@ const App = () => {
       </div>
       <h1>Notes</h1>
       <NoteForm />
-      <Notes filter={filter} />
+      <Notes />
     </div>
   );
 };
