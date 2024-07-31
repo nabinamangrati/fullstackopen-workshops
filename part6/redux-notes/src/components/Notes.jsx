@@ -25,16 +25,6 @@ const Notes = () => {
       });
     }
   });
-  //we can use below as ternary for the above
-  // const notes = useSelector((state) =>
-  //   filter === "ALL"
-  //     ? state
-  //     : filter === "IMPORTANT"
-  //     ? state.filter((note) => note.important === true)
-  //     : filter === "NONIMPORTANT"
-  //     ? state.filter((note) => note.important === false)
-  //     : state
-  // );
 
   const toggleImportant = (id) => {
     dispatch(toggleImportanceOf(id));
