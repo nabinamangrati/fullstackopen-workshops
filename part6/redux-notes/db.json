@@ -1,19 +1,17 @@
 {
   "notes": [
     {
-      "content": "the app state is in redux store",
-      "important": true,
-      "id": 1
+      "id": "1",
+      "important": false
     },
     {
       "content": "state changes are made with actions",
       "important": false,
-      "id": 2
+      "id": "2"
     },
     {
-      "id": 3,
-      "content": "note from backend",
-      "important": true
+      "id": "3",
+      "important": false
     },
     {
       "id": "b954",
@@ -21,8 +19,27 @@
       "important": true
     },
     {
-      "id": 5,
+      "id": "5",
       "content": "hello worls",
+      "important": true
+    },
+    {
+      "id": "794d",
+      "important": false
+    },
+    {
+      "id": "073d",
+      "content": "one more",
+      "important": true
+    },
+    {
+      "id": "4d96",
+      "content": "again moreee",
+      "important": true
+    },
+    {
+      "id": "d6b1",
+      "content": "moreeee",
       "important": true
     }
   ]
