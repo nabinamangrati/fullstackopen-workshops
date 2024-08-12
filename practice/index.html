@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Propagation Test</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">
+        <button class="button">Click me!</button>
+        <div class="container">
+          <button>button1</button>
+          <button>button2</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      div1
+      <span>span1</span>
+      <span>sapn2</span>
+    </div>
+    <div>div2</div>
+    <script src="script.js"></script>
+  </body>
+</html>
