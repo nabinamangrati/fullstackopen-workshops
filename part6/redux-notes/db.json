@@ -1,17 +1,9 @@
 {
   "notes": [
     {
-      "id": "1",
-      "important": false
-    },
-    {
       "content": "state changes are made with actions",
-      "important": false,
+      "important": true,
       "id": "2"
-    },
-    {
-      "id": "3",
-      "important": false
     },
     {
       "id": "b954",
@@ -24,13 +16,9 @@
       "important": true
     },
     {
-      "id": "794d",
-      "important": false
-    },
-    {
       "id": "073d",
       "content": "one more",
-      "important": true
+      "important": false
     },
     {
       "id": "4d96",
@@ -40,7 +28,27 @@
     {
       "id": "d6b1",
       "content": "moreeee",
+      "important": false
+    },
+    {
+      "id": "101e",
+      "content": "hello nepal",
       "important": true
+    },
+    {
+      "id": "6d2b",
+      "content": "nabina",
+      "important": true
+    },
+    {
+      "id": "fda7",
+      "content": "nabina at tej",
+      "important": true
+    },
+    {
+      "id": "48f9",
+      "content": "impact hub",
+      "important": false
     }
   ]
 }
