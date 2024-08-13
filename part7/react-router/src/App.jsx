@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Notes from "./Notes";
 import Note from "./Note";
-
+import { useState } from "react";
+import Login from "./Login";
 const notes = [
   {
     content: "state changes are made with actions",
@@ -31,12 +32,6 @@ const Home = () => (
   </div>
 );
 
-// const Notes = () => (
-//   <div>
-//     <h2>Notes</h2>
-//   </div>
-// );
-
 const Users = () => (
   <div>
     <h2>Users</h2>
@@ -44,6 +39,7 @@ const Users = () => (
 );
 
 const App = () => {
+  const [user, setUser] = useState(null);
   const padding = {
     padding: 5,
   };
@@ -60,6 +56,13 @@ const App = () => {
         <Link style={padding} to="/users">
           users
         </Link>
+        {user ? (
+          <em>{user} logged in</em>
+        ) : (
+          <Link style={padding} to="/login">
+            login
+          </Link>
+        )}
       </div>
 
       <Routes>
@@ -67,6 +70,7 @@ const App = () => {
 
         <Route path="/notes" element={<Notes notes={notes} />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/" element={<Home />} />
       </Routes>
 
