@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Notes from "./Notes";
+import Note from "./Note";
 
 const notes = [
   {
@@ -62,6 +63,8 @@ const App = () => {
       </div>
 
       <Routes>
+        <Route path="/notes/:id" element={<Note notes={notes} />} />
+
         <Route path="/notes" element={<Notes notes={notes} />} />
         <Route path="/users" element={<Users />} />
         <Route path="/" element={<Home />} />
