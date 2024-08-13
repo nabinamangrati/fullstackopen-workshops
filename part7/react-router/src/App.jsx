@@ -1,15 +1,40 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Notes from "./Notes";
+
+const notes = [
+  {
+    content: "state changes are made with actions",
+    important: true,
+    id: "2",
+  },
+  {
+    id: "b954",
+    content: "new note",
+    important: true,
+  },
+  {
+    id: "5",
+    content: "hello worls",
+    important: true,
+  },
+  {
+    id: "073d",
+    content: "one more",
+    important: false,
+  },
+];
+
 const Home = () => (
   <div>
     <h2>TKTL notes app</h2>
   </div>
 );
 
-const Notes = () => (
-  <div>
-    <h2>Notes</h2>
-  </div>
-);
+// const Notes = () => (
+//   <div>
+//     <h2>Notes</h2>
+//   </div>
+// );
 
 const Users = () => (
   <div>
@@ -37,7 +62,7 @@ const App = () => {
       </div>
 
       <Routes>
-        <Route path="/notes" element={<Notes />} />
+        <Route path="/notes" element={<Notes notes={notes} />} />
         <Route path="/users" element={<Users />} />
         <Route path="/" element={<Home />} />
       </Routes>
