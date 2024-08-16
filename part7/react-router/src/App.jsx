@@ -46,8 +46,9 @@ const App = () => {
   const match = useMatch("/notes/:id");
   const note = match ? notes.find((note) => note.id === match.params.id) : null;
 
+  const footerStyle = { color: "blue", fontSize: "30px" };
   return (
-    <>
+    <div className="container">
       <div>
         <Link style={padding} to="/">
           home
@@ -79,9 +80,9 @@ const App = () => {
       </Routes>
 
       <div>
-        <i>Note app, Department of Computer Science 2024</i>
+        <i style={footerStyle}>Note app, Department of Computer Science 2024</i>
       </div>
-    </>
+    </div>
   );
 };
 
