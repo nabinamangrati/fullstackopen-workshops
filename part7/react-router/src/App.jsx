@@ -4,6 +4,7 @@ import Note from "./Note";
 import { useState } from "react";
 import Login from "./Login";
 import { Alert, Nav, Navbar } from "react-bootstrap";
+import { Container } from "@mui/material";
 
 const notes = [
   {
@@ -50,7 +51,7 @@ const App = () => {
 
   const footerStyle = { color: "blue", fontSize: "30px" };
   return (
-    <div className="container">
+    <Container>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -98,7 +99,7 @@ const App = () => {
       <div>
         <i style={footerStyle}>Note app, Department of Computer Science 2024</i>
       </div>
-    </div>
+    </Container>
   );
 };
 
