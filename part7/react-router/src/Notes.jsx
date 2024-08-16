@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import { Table } from "react-bootstrap";
 import {
   TableContainer,
   Table,
@@ -20,9 +19,9 @@ const Notes = ({ notes }) => {
                 <TableCell>
                   <Link to={`/notes/${note.id}`}>{note.content}</Link>
                 </TableCell>
-                <td>
+                <TableCell>
                   <strong>{note.important ? "important" : ""}</strong>
-                </td>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
