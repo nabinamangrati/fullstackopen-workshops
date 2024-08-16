@@ -3,6 +3,8 @@ import Notes from "./Notes";
 import Note from "./Note";
 import { useState } from "react";
 import Login from "./Login";
+import { Alert } from "react-bootstrap";
+
 const notes = [
   {
     content: "state changes are made with actions",
@@ -60,8 +62,9 @@ const App = () => {
           users
         </Link>
         {user ? (
-          <em>{user} logged in</em>
+          <Alert variant="success">{user} logged in </Alert>
         ) : (
+          // <em>{user} logged in</em>
           <Link style={padding} to="/login">
             login
           </Link>

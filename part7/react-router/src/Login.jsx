@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 const Login = ({ setUser }) => {
   const navigate = useNavigate();
 
@@ -9,10 +10,20 @@ const Login = ({ setUser }) => {
     navigate("/");
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="username" />
-      <button>submit</button>
-    </form>
+    <>
+      <h2>Login</h2>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>username:</Form.Label>
+
+          {/* <input type="text" name="username" /> */}
+          <Form.Control type="text" name="username" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          submit
+        </Button>
+      </Form>
+    </>
   );
 };
 
