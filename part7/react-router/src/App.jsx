@@ -4,14 +4,15 @@ import Note from "./Note";
 import { useState } from "react";
 import Login from "./Login";
 // import { Nav, Navbar } from "react-bootstrap";
-import {
-  Container,
-  Alert,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Button,
-} from "@mui/material";
+import { Page, Navigation, Footer } from "./components/Button";
+// import {
+//   Container,
+//   Alert,
+//   AppBar,
+//   Toolbar,
+//   IconButton,
+//   Button,
+// } from "@mui/material";
 
 const notes = [
   {
@@ -58,43 +59,43 @@ const App = () => {
 
   const footerStyle = { color: "blue", fontSize: "30px" };
   return (
-    <Container>
-      <AppBar position="static">
-        <Toolbar>
-          <Button color="inherit" component={Link} to="/">
+    <>
+      <Page>
+        <Navigation>
+          <Link style={padding} to="/">
             home
-          </Button>
-          <Button color="inherit" component={Link} to="/notes">
+          </Link>
+          <Link style={padding} to="/notes">
             notes
-          </Button>
-          <Button color="inherit" component={Link} to="/users">
+          </Link>
+          <Link style={padding} to="/users">
             users
-          </Button>
+          </Link>
           {user ? (
-            <Alert>{user} logged in</Alert>
+            <em>{user} logged in</em>
           ) : (
-            <Button color="inherit" component={Link} to="/login">
+            <Link style={padding} to="/login">
               login
-            </Button>
+            </Link>
           )}
-        </Toolbar>
-      </AppBar>
+        </Navigation>
 
-      <Routes>
-        <Route path="/notes/:id" element={<Note note={note} />} />
-        <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/notes" element={<Notes notes={notes} />} />
-        <Route
-          path="/users"
-          element={user ? <Users /> : <Navigate replace to="/login" />}
-        />
-        <Route path="/" element={<Home />} />
-      </Routes>
+        <Routes>
+          <Route path="/notes/:id" element={<Note note={note} />} />
+          <Route path="/notes" element={<Notes notes={notes} />} />
+          <Route
+            path="/users"
+            element={user ? <Users /> : <Navigate replace to="/login" />}
+          />
+          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
 
-      <div>
-        <i style={footerStyle}>Note app, Department of Computer Science 2024</i>
-      </div>
-    </Container>
+        <Footer>
+          <em>Note app, Department of Computer Science 2022</em>
+        </Footer>
+      </Page>
+    </>
   );
 };
 
