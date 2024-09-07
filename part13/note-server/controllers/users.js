@@ -24,6 +24,5 @@ router.get("/:id", async (req, res) => {
     res.status(404).end();
   }
 });
-User.sync();
 
 module.exports = router;
