@@ -1,11 +1,17 @@
 ###
+GET  http://localhost:3001/api/notes/
+
+
+
+###
 POST http://localhost:3001/api/notes/
 content-type: application/json
 authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYiAxIiwiaWQiOjIsImlhdCI6MTcyNTcxNjc0OH0.AF6L1NSLOsbEzIiQNqClDpfVV2MwR_cHVmejz1A8yzE
 
 {
-    "content": "hello from tej",
-    "important": false
+    "content": "checking allownull from note model",
+    "important":true
+
 }
 
 ###
