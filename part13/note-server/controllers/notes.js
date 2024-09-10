@@ -1,5 +1,5 @@
 const app = require("express").Router();
-const { Note } = require("../models/index");
+const { Note, User } = require("../models/index");
 const jwt = require("jsonwebtoken");
 
 const { SECRET } = require("../util/config");
@@ -24,7 +24,16 @@ const tokenExtractor = (req, res, next) => {
 };
 
 app.get("/", async (req, res) => {
-  const notes = await Note.findAll();
+  const notes = await Note.findAll({
+    attributes: { exclude: ["userId"] },
+    include: {
+      model: User,
+      attributes: ["name"],
+    },
+    where: {
+      important: req.query.important === "true",
+    },
+  });
   res.json(notes);
 });
 
