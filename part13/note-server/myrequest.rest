@@ -6,10 +6,10 @@ GET  http://localhost:3001/api/notes/
 ###
 POST http://localhost:3001/api/notes/
 content-type: application/json
-authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYiAxIiwiaWQiOjIsImlhdCI6MTcyNTcxNjc0OH0.AF6L1NSLOsbEzIiQNqClDpfVV2MwR_cHVmejz1A8yzE
+authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYiAzIiwiaWQiOjMsImlhdCI6MTcyNjcyOTc2MX0.04MRuCvpTLNdFp6F-bkayUhxfc5mlnjJJO1huHAQpqs
 
 {
-    "content": "checking allownull from note model",
+    "content": "new note 3",
     "important":true
 
 }
@@ -28,15 +28,16 @@ POST http://localhost:3001/api/users/
 content-type: application/json
 
 {
-    "username": "nab 1",
-    "name": "nabina 1"
+    "username": "nab 4",
+    "name": "nabina 4",
+    "disabled":true
 }
 ###
 POST http://localhost:3001/api/login/
 content-type: application/json
 
 {
-    "username": "nab 1",
+    "username": "nab 3",
     "password": "secret"
    
 }
