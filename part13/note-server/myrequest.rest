@@ -37,7 +37,16 @@ POST http://localhost:3001/api/login/
 content-type: application/json
 
 {
-    "username": "nab 3",
+    "username": "nab 1",
     "password": "secret"
    
+}
+###
+PUT http://localhost:3001/api/users/nab 2
+content-type: application/json
+authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hYiAxIiwiaWQiOjEsImlhdCI6MTcyNjc0MzgwMn0.RZcHFOt47-64mlomIfSKEWdpn4qn53PA0MVYQG_N4PE
+
+{
+    
+    "disabled": true
 }
