@@ -22,13 +22,6 @@ router.get("/", async (req, res) => {
           attributes: ["name"],
         },
       },
-      {
-        model: Team,
-        attributes: ["name", "id"],
-        through: {
-          attributes: [],
-        },
-      },
     ],
   });
   res.json(users);
@@ -49,12 +42,16 @@ router.get("/:id", async (req, res) => {
       model: Note,
     },
   });
+
   if (user) {
-    res.json({
-      username: user.username,
-      name: user.name,
-      note_count: user.notes.length,
-    });
+    let teams = undefined;
+    if (req.query.teams === "true") {
+      teams = await user.getTeams({
+        attributes: ["name"],
+        joinTableAttributes: [],
+      });
+    }
+    res.json({ ...user.toJSON(), teams });
   } else {
     res.status(404).end();
   }
